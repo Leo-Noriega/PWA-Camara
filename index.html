@@ -9,9 +9,11 @@
 </head>
 <body>
     <button id="openCamera">Usar cámara</button>
+    <button id="switchCamera">Cambiar cámara</button>
     <button id="takePhoto">Tomar foto</button>
     <video id="video" width="320" height="240" autoplay></video>
     <canvas id="canvas" width="320" height="240"></canvas>
+    <div id="gallery" style="display:flex;overflow-x:auto;gap:8px;margin-top:12px;"></div>
     <script src="app.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
