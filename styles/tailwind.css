@@ -58,6 +58,10 @@ a {
   width: 100%;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -151,6 +155,10 @@ a {
 
 .items-stretch {
   align-items: stretch;
+}
+
+.flex-none {
+  flex: none;
 }
 
 .justify-center {
@@ -382,12 +390,24 @@ a {
   object-fit: cover;
 }
 
+.object-contain {
+  object-fit: contain;
+}
+
 .h-20 {
   height: 5rem;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .w-24 {
   width: 6rem;
+}
+
+.max-h-24 {
+  max-height: 6rem;
 }
 
 .backdrop-blur-sm {

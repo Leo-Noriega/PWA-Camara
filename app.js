@@ -124,7 +124,7 @@ takePhoto.addEventListener('click', () => {
     image.src = dataURL;
     image.alt = 'Foto capturada';
     image.loading = 'lazy';
-    image.className = 'h-20 w-24 rounded-xl border border-ink-200 object-cover';
+    image.className = 'flex-none max-h-24 rounded-xl border border-ink-200 object-contain w-auto h-auto';
     gallery.appendChild(image);
     if (typeof gallery.scrollTo === 'function') {
         gallery.scrollTo({ left: gallery.scrollWidth, behavior: 'smooth' });
