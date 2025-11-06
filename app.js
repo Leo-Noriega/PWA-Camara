@@ -35,9 +35,7 @@ let stream;
 let currentFacing = 'environment';
 
 function syncVideoDimensions() {
-    if (!video.videoWidth || !video.videoHeight) {
-        return;
-    }
+    if (!video.videoWidth || !video.videoHeight) return;
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     if (videoContainer) {
@@ -64,15 +62,14 @@ async function startCamera(facing) {
     }
     const newStream = await navigator.mediaDevices.getUserMedia({
         video: {
-            width: { ideal: 320 },
-            height: { ideal: 240 },
+            aspectRatio: { ideal: 1.777 },
             facingMode: facing
         }
     });
     stopStream();
     stream = newStream;
     video.srcObject = stream;
-    await video.play().catch(() => {});
+    await video.play().catch(() => { });
     currentFacing = facing;
 }
 
@@ -115,9 +112,7 @@ takePhoto.addEventListener('click', () => {
         setStatus('Activa la cámara antes de tomar una foto.', 'warning');
         return;
     }
-    if (!canvas.width || !canvas.height) {
-        syncVideoDimensions();
-    }
+    syncVideoDimensions();
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const dataURL = canvas.toDataURL('image/png');
     const image = new Image();
