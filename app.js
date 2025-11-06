@@ -5,6 +5,7 @@ const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const gallery = document.getElementById('gallery');
+const videoContainer = document.getElementById('videoContainer');
 const emptyGallery = document.getElementById('emptyGallery');
 const statusMessage = document.getElementById('statusMessage');
 const toneClasses = ['text-tone-muted', 'text-tone-success', 'text-tone-warning', 'text-tone-error'];
@@ -33,6 +34,21 @@ function hideEmptyState() {
 let stream;
 let currentFacing = 'environment';
 
+function syncVideoDimensions() {
+    if (!video.videoWidth || !video.videoHeight) {
+        return;
+    }
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    if (videoContainer) {
+        videoContainer.style.aspectRatio = `${video.videoWidth} / ${video.videoHeight}`;
+    }
+}
+
+video.addEventListener('loadedmetadata', () => {
+    syncVideoDimensions();
+});
+
 function stopStream() {
     if (!stream) {
         return;
@@ -56,6 +72,7 @@ async function startCamera(facing) {
     stopStream();
     stream = newStream;
     video.srcObject = stream;
+    await video.play().catch(() => {});
     currentFacing = facing;
 }
 
@@ -97,6 +114,9 @@ takePhoto.addEventListener('click', () => {
     if (!stream) {
         setStatus('Activa la cámara antes de tomar una foto.', 'warning');
         return;
+    }
+    if (!canvas.width || !canvas.height) {
+        syncVideoDimensions();
     }
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const dataURL = canvas.toDataURL('image/png');
