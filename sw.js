@@ -1,9 +1,10 @@
-const CACHE_NAME = 'camara-pwa-v1';
+const CACHE_NAME = 'camara-pwa-v2';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/app.js',
-    '/manifest.json'
+    './',
+    './index.html',
+    './app.js',
+    './manifest.json',
+    './styles/tailwind.css'
 ];
 
 self.addEventListener('install', event => {

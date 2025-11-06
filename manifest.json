@@ -5,8 +5,8 @@
     "start_url": "/PWA-Camara/",
     "scope": "/PWA-Camara/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
+    "background_color": "#313647",
+    "theme_color": "#313647",
     "orientation": "portrait",
     "icons": [
         {
